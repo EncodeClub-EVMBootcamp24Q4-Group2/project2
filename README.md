@@ -9,12 +9,12 @@ This project represents Homework #2 for Group #2 for the Encode Club EVM Bootcam
 
 *Links point to individual contributions for this project.*
 
-+ [ExqPpl](./users/ExqPpl/README.md) - Github: @pondskai - Discord: @Kai
-+ [tJnNuQ](./users/tJnNuQ/README.md) - Github: @maomaosaosao - Discord: @xiaodragon9589
-+ [R9dhTD](./users/R9dhTD/README.md) - Github: @brianblank - Discord: @Brian Blank
-+ [DAaJDn](./users/DAaJDn/README.md) - Github: @codesport 
-+ [lofjwH](./users/lofjwH/README.md) - Github: <TODO> - Discord: @zzlovecoffee
-+ [Mn8EN0](./users/Mn8EN0/README.md) - Github: @ethalorian - Discord: @ethalorian | KEEZ
-+ [HPJ2do](./users/HPJ2do/README.md) - Github: @DiegoB1911 - Discord: @DiegoB
++ [ExqPpl](https://github.com/EncodeClub-EVMBootcamp24Q4-Group2/project2/tree/scripts-by-kai) - Github: @pondskai - Discord: @Kai
++ [tJnNuQ](https://github.com/EncodeClub-EVMBootcamp24Q4-Group2/project2/tree/user/maomaosaosao) - Github: @maomaosaosao - Discord: @xiaodragon9589
++ [R9dhTD](https://github.com/EncodeClub-EVMBootcamp24Q4-Group2/project2/tree/brianblank) - Github: @brianblank - Discord: @Brian Blank
++ [DAaJDn](https://github.com/EncodeClub-EVMBootcamp24Q4-Group2/project2/tree/codesport) - Github: @codesport 
++ [lofjwH](https://github.com/EncodeClub-EVMBootcamp24Q4-Group2/project2/tree/zzproject2) - Github: <TODO> - Discord: @zzlovecoffee
++ [Mn8EN0](https://github.com/EncodeClub-EVMBootcamp24Q4-Group2/project2/tree/craig) - Github: @ethalorian - Discord: @ethalorian | KEEZ
++ [HPJ2do](https://github.com/EncodeClub-EVMBootcamp24Q4-Group2/project2/tree/HPJ2do/DiegoBarquero) - Github: @DiegoB1911 - Discord: @DiegoB
 
 
