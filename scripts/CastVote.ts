@@ -17,10 +17,44 @@ async function main() {
     if (!/^0x[a-fA-F0-9]{40}$/.test(contractAddress))
       throw new Error("Invalid contract address");
 
-    // Get proposal index to vote for from the command line arguments
+    // Get proposal index to vote for from arguments
     const proposalIndex = args[1];
     if (isNaN(Number(proposalIndex))) throw new Error("Invalid proposal index");
 
+    // Get voter address from the arguments
+    const voterAddress = args[2] as `0x${string}`;
+    if (!voterAddress) throw new Error("Voter address not provided");
+    if (!/^0x[a-fA-F0-9]{40}$/.test(voterAddress)) 
+        throw new Error("Invalid voter address format. Must be a valid Ethereum address (0x followed by 40 hexadecimal characters)");
+
+    // check if voter is deployer
+    if (voterAddress === deployerClient.account.address) {
+        console.log("voter is chairperson");
+    }
+
+    const voter = await publicClient.readContract({
+        address: contractAddress,
+        abi,
+        functionName: "voters",
+        args: [voterAddress],
+    }) as any;
+    const [weight, voted, delegate, vote] = voter
+    console.log("\nVoter Status:");
+    console.log("Address:", voterAddress);
+    if (weight === 0n) {
+        console.log("\nError: This address has no voting rights.");
+        console.log("The chairperson must grant voting rights before this address can vote.");
+        process.exit(1);
+    } else {
+        console.log("Weight:", weight.toString());
+        if (voted) {
+            console.log("Delegated to:", delegate);
+            console.log("Voted for proposal:", vote.toString());
+            process.exit(1);
+        } else {
+            console.log("Voted for proposal: None");
+        }
+    }
 
     console.log("Proposal selected: ");
     const proposal = (await publicClient.readContract({
@@ -43,7 +77,7 @@ async function main() {
     stdin.addListener("data", async function (d) {
         try {
             if (d.toString().trim().toLowerCase() == "y") {
-                const hash = await deployerClient.writeContract({
+                const hash = await voter.address.writeContract({
                 address: contractAddress,
                 abi,
                 functionName: "vote",
