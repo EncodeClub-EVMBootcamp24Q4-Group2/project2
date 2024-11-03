@@ -1,4 +1,4 @@
-// TO DO
+// COMPLETED AND EXECUTED
 
 import { Address, toHex } from "viem";
 import { publicClient, deployerClient } from "./config";
