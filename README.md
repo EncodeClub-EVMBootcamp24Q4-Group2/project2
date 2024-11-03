@@ -1,20 +1,34 @@
 # Encode Club EVM Bootcamp, Q4 2024, Group 2, Homework #2
 
-## Summary
-This project represents Homework #2 for Group #2 for the Encode Club EVM Bootcamp.  The assignment is defined as:
-* Develop and run scripts for “Ballot.sol” within your group to give voting rights, casting votes, delegating votes and querying results
-* Write a report with each function execution and the transaction hash, if successful, or the revert reason, if failed
+## Contract deployed using hardhat:
+Ballot contract deployed to: 0xf664e989fa71437bfa26e666051f2b471e595035
+Last block number: 7001248n
+Deployer address: 0x1c218834059df5c5bb0421e28a131aa5ee3cbc95
+Deployer balance: 0.054574199575297148 ETH
+Transaction hash: 0x4914f6082033b4969fc20b21d3f7ffdfe2cbf215850c7d36261f22463a233ac1
 
-## Members of Group 2
+## Contract deployed using viem:
+Ballot contract deployed to: 0xa76fed9fd4bda6839b8d8ff6dce3f0153f152280
+Last block number: 7005272n
+Deployer address: 0x1c218834059df5c5bb0421e28a131aa5ee3cbc95
+Deployer balance: 0.051469531775892676 ETH
+Transaction hash: 0x0f6d69486031934c028507ec4c1c3b90cd4303595a3494567b4f7f8dbad4e008
 
-*Links point to individual contributions for this project.*
+The functions are executed using the contract deployed with Viem. 
 
-+ [ExqPpl](./users/ExqPpl/README.md) - Github: @pondskai - Discord: @Kai
-+ [tJnNuQ](./users/tJnNuQ/README.md) - Github: @maomaosaosao - Discord: @xiaodragon9589
-+ [R9dhTD](./users/R9dhTD/README.md) - Github: @brianblank - Discord: @Brian Blank
-+ [DAaJDn](./users/DAaJDn/README.md) - Github: @codesport 
-+ [lofjwH](./users/lofjwH/README.md) - Github: <TODO> - Discord: @zzlovecoffee
-+ [Mn8EN0](./users/Mn8EN0/README.md) - Github: @ethalorian - Discord: @ethalorian | KEEZ
-+ [HPJ2do](./users/HPJ2do/README.md) - Github: @DiegoB1911 - Discord: @DiegoB
+## GiveVotingRight
+Transaction hash: 0x3782c417a40fa0b93f248d4e8de74f263dd2bb564af30cf6f86fc791b272a2a3
+
+## Vote
+Transaciton hash: 0x37cc3286b2e1eeede5481727a94f10e3a035a768c89c8a5a815473aab24b9189
+
+## Delegate
+Transaction hash: 0x6960ef8397b6acb35f5d272deb0e21cef1987cfc83bbb37df4a783f9adaaceb3
+
+## Query results
+![Alt Text](img/imgQuery.png)
+
+## What is not yet working
+Error handling is not working likely due to datatype mismatch. 
 
 
