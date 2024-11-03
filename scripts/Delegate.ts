@@ -4,7 +4,8 @@ dotenv.config();
 import { publicClient, deployerClient } from "./config";
 
 async function main() {
-    console.log("GrantRight script started with parameters:", process.argv);
+    console.log("Delegate script started with parameters: contract address, delegate address");
+
     // Get arguments from the command line arguments
     const args = process.argv.slice(2);
     if (!args || args.length < 2)
@@ -17,32 +18,12 @@ async function main() {
       throw new Error("Invalid contract address");
 
     // Get voter address from the arguments
-    const voterAddress = args[1] as `0x${string}`;
-    if (!voterAddress) throw new Error("Voter address not provided");
-    if (!/^0x[a-fA-F0-9]{40}$/.test(voterAddress)) 
+    const delegateAddress = args[1] as `0x${string}`;
+    if (!delegateAddress) throw new Error("Voter address not provided");
+    if (!/^0x[a-fA-F0-9]{40}$/.test(delegateAddress)) 
         throw new Error("Invalid voter address format. Must be a valid Ethereum address (0x followed by 40 hexadecimal characters)");
 
-    // check if voter is deployer
-    if (voterAddress === deployerClient.account.address) {
-        console.log("chairperson cannot grante voting rights to themselves");
-        process.exit(1);
-    }
-
-    const voter = await publicClient.readContract({
-        address: contractAddress,
-        abi,
-        functionName: "voters",
-        args: [voterAddress],
-    }) as any;
-    const [ weight ] = voter
-    console.log("\nVoter Status:");
-    console.log("Address:", voterAddress);
-    if (weight === 0n) {
-        console.log("This address has no voting rights. Grant voting rights? (y/n)");
-    } else {
-        console.log("\nError: This address already has voting rights.");
-        process.exit(1);
-    }
+    console.log("Delegate to ", delegateAddress, "? (y/n)");
 
     const stdin = process.stdin;
     stdin.setRawMode(true);
@@ -55,13 +36,21 @@ async function main() {
                 const hash = await deployerClient.writeContract({
                 address: contractAddress,
                 abi,
-                functionName: "giveRightToVote",
-                args: [voterAddress],
+                functionName: "delegate",
+                args: [delegateAddress],
                 });
                 console.log("Transaction hash:", hash);
                 console.log("Waiting for confirmations...");
                 const receipt = await publicClient.waitForTransactionReceipt({ hash });
-                console.log("Voting right granted to", voterAddress, "status:", receipt.status);
+
+                // Get delegate's weight after delegation
+                const delegateWeight = await publicClient.readContract({
+                    address: contractAddress,
+                    abi,
+                    functionName: "voters",
+                    args: [delegateAddress],
+                }) as { weight: bigint };
+                console.log("Delegate's weight afterwards:", delegateWeight.toString());
                 process.exit(0);
             } else {
                 console.log("Operation cancelled ");

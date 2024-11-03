@@ -5,7 +5,7 @@ dotenv.config();
 import { publicClient, deployerClient } from "./config";
 
 async function main() {
-    console.log("CastVote script started with parameters:", process.argv);
+    console.log("CastVote script started with parameters: contract address, proposal index, voter address");
     // Get arguments from the command line arguments
     const args = process.argv.slice(2);
     if (!args || args.length < 2)
