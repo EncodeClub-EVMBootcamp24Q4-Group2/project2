@@ -15,6 +15,7 @@ Deployer balance: 0.051469531775892676 ETH
 Transaction hash: 0x0f6d69486031934c028507ec4c1c3b90cd4303595a3494567b4f7f8dbad4e008
 
 The functions are executed using the contract deployed with Viem. 
+https://sepolia.etherscan.io/address/0xa76fed9fd4bda6839b8d8ff6dce3f0153f152280
 
 ## GiveVotingRight
 Transaction hash: 0x3782c417a40fa0b93f248d4e8de74f263dd2bb564af30cf6f86fc791b272a2a3
