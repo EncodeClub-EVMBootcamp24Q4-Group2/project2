@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.39"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@types/node": "^22.8.6",
+    "hardhat": "^2.22.15",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.0.0"
+  }
+}
