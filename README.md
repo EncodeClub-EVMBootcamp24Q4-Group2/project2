@@ -1,7 +1,5 @@
 # Homework #2
 
-# Sample Hardhat Project
-
 ## CastVote Results
 
 ### Proposal Details
@@ -36,6 +34,21 @@
   "type": "eip1559"
 }
 ```
+## Get Results
+
+### Contract Query
+**Contract Address:** `0x92620b62E21193ed7A0f36915522EFab5049A718`
+
+### Current Standings
+🏆 **Final Vote Count:**
+- **salad:** 2 votes (Winner)
+- **lamb chops:** 2 votes
+- **pizza:** 0 votes
+
+### Winning Proposal
+- **Name:** salad
+- **Index:** 1
+- **Votes:** 2
 
 ## Contract Deployment With Viem
 
@@ -150,32 +163,8 @@
 }
 ```
 
-## Get Results
 
-### Contract Query
-**Contract Address:** `0x92620b62E21193ed7A0f36915522EFab5049A718`
 
-### Current Standings
-🏆 **Final Vote Count:**
-- **salad:** 2 votes (Winner)
-- **lamb chops:** 2 votes
-- **pizza:** 0 votes
 
-### Winning Proposal
-- **Name:** salad
-- **Index:** 1
-- **Votes:** 2
 
-## Usage Instructions
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
-
-### Available Tasks
-
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
 ```
