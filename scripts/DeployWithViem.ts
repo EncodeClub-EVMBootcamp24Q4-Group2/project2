@@ -9,7 +9,6 @@ const providerApiKey = process.env.ALCHEMY_API_KEY || "";
 const deployerPrivateKey = process.env.PRIVATE_KEY || "";
 
 async function main() {
-
   //////////////////////
   //Create Public Client
   //////////////////////  
@@ -54,9 +53,25 @@ async function main() {
   console.log("Transaction hash:", hash);
   console.log("Waiting for confirmations...");
   const receipt = await publicClient.waitForTransactionReceipt({ hash });
-  console.log("Ballot contract deployed to:", receipt.contractAddress);
+  if (!receipt.contractAddress) throw new Error("No contract address in receipt");
+  const contractAddress = receipt.contractAddress as `0x${string}`;
+  console.log("Ballot contract deployed to:", contractAddress);
 
 
+ ///////////////////
+ //Read Contract
+ //////////////////
+  console.log("Proposals: ");
+  for (let index = 0; index < proposals.length; index++) {
+    const proposal = (await publicClient.readContract({
+      address: contractAddress,
+      abi,
+      functionName: "proposals",
+      args: [BigInt(index)],
+    })) as any[];
+    const name = hexToString(proposal[0], { size: 32 });
+    console.log({ index, name, proposal });
+  }
 }
 
 main().catch((error) => {
