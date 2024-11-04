@@ -10,8 +10,7 @@ const deployerPrivateKey = process.env.PRIVATE_KEY || "";
 
 async function main() {
   //////////////////////
-  //Create Public Client
-  //////////////////////  
+  //Create Public Client 
   const proposals = process.argv.slice(2);
   if (!proposals || proposals.length < 1)
     throw new Error("Proposals not provided");
@@ -22,9 +21,8 @@ async function main() {
   const blockNumber = await publicClient.getBlockNumber();
   console.log("Last block number:", blockNumber);
 
-  //////////////////////
+  /////////////////////////
   //Create a Wallet Client
-  ///////////////////////
   const account = privateKeyToAccount(`0x${deployerPrivateKey}`);
   const deployer = createWalletClient({
     account,
@@ -41,9 +39,8 @@ async function main() {
     deployer.chain.nativeCurrency.symbol
   );
 
-  /////////////////////
+  ///////////////////////
   //Deploying a Contract
-  //////////////////////
   console.log("\nDeploying Ballot contract");
   const hash = await deployer.deployContract({
     abi,
@@ -60,7 +57,6 @@ async function main() {
 
  ///////////////////
  //Read Contract
- //////////////////
   console.log("Proposals: ");
   for (let index = 0; index < proposals.length; index++) {
     const proposal = (await publicClient.readContract({
