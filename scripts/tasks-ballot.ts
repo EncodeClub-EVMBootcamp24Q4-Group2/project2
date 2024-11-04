@@ -2,13 +2,21 @@
 // Class 8: Running operations scripts
 // https://github.com/Encode-Club-Solidity-Bootcamp/Lesson-08?tab=readme-ov-file#running-operations-scripts
 
+/**
+ * This module consolidates independent functions that assignVoter, castVote, getWinner, queryUsers
+ * 
+ */
+
 
 import 'dotenv/config' 
 import { createPublicClient, http, createWalletClient,formatEther, toHex, hexToString, } from "viem"; 
 import { privateKeyToAccount } from "viem/accounts"; //wallet client
-import { abi, bytecode } from "../artifacts/contracts/Ballot.sol/Ballot.json"; 
+import { abi, bytecode } from "../artifacts/contracts/Ballot.sol/Ballot.json"; //NB: only need bytecode if deploying
 import { sepolia } from "viem/chains";
 
+
+
+// TODO:  is it cleaner to store in a config.ts file then import it via import { publicClient, deployerClient } from "./config";
 const ETH_SEPOLIA_RPC_URL_1 = process.env.ETH_SEPOLIA_RPC_URL_1
 const account = privateKeyToAccount(`0x${process.env.PRIVATE_KEY}`);
 
@@ -27,7 +35,12 @@ const publicClient = createPublicClient({
 // const contractAddress  = inputs[0] as `0x${string}`;
 
 
+// TODO: include JS docbloc for all functiuons.  Mimic PHP standards:
+    // 1 line description
+    // @params variableName -  type and descripton
+    // any return values and type}
 
+// TODO: Wrap all functions in try-catch blocs
 const test = async (voterAddress: `0x${string}`) => {
 
     console.log( voterAddress)
@@ -49,7 +62,7 @@ const test = async (voterAddress: `0x${string}`) => {
 }
 
 
-
+// npx ts-node call-any-function.ts task-ballot-vote.ts/assignVoter/0xe429F5E3A91b4932aE3022de3E3Ca0F6A911eECa/0x92620b62E21193ed7A0f36915522EFab5049A718
 const assignVoter = async (voterAddress: `0x${string}`, contractAddress: `0x${string}`,) => {
 
     //const voterAddress    = inputs[1] as `0x${string}`;
@@ -77,7 +90,7 @@ const assignVoter = async (voterAddress: `0x${string}`, contractAddress: `0x${st
 
 }
 
-
+// npx ts-node call-any-function.ts task-ballot-vote.ts/castVote/1/0x92620b62E21193ed7A0f36915522EFab5049A718
 const castVote = async ( proposalIndex: BigInt, contractAddress: `0x${string}` ) => {
 
   //  const proposalIndex = inputs[0] as BigInt;
@@ -128,23 +141,51 @@ const delegatePower = async ( delegateAddress:  `0x${string}`, contractAddress: 
 
 
 
+// npx ts-node call-any-function.ts task-ballot-vote.ts/queryUsers/0x92620b62E21193ed7A0f36915522EFab5049A718
+const queryUsers = async ( contractAddress: `0x${string}` ) => {
 
+    // struct Voter {
+    //     uint weight; // weight is accumulated by delegation
+    //     bool voted;  // if true, that person already voted
+    //     address delegate; // person delegated to
+    //     uint vote;   // index of the voted proposal
+    // }
+
+
+    // // This declares a state variable that stores a `Voter` struct for each possible address.
+    // mapping(address => Voter) public voters;
+
+
+    const userProfiles = await publicClient.readContract({
+        address: contractAddress,
+        abi,
+        functionName: "voters", //this is actually reading  state variable, not a function!
+    }) as any[]// any[];
+    
+	const [ weight, voteStatus, delegate, proposalIndex ] = userProfiles
+    console.log("The winning proposal is:", name )
+}
+
+
+
+
+// npx ts-node call-any-function.ts task-ballot-vote.ts/getWinner/0x92620b62E21193ed7A0f36915522EFab5049A718
 const getWinner = async ( contractAddress: `0x${string}` ) => {
 
-    const winner = ( await publicClient.readContract({
+    const winner = await publicClient.readContract({
         address: contractAddress,
         abi,
         functionName: "winnerName",
-    })) as any[];
+    }) as `0x${string}`// any[];
     
-    console.log( winner )
-
+	const name = hexToString(winner, { size: 32 });
+    console.log("The winning proposal is:", name )
 }
 
 
 
 //Named Exports
-export { test, assignVoter, castVote }
+export { test, assignVoter, castVote, getWinner, queryUsers }
 
 
 
