@@ -62,7 +62,7 @@ const test = async (voterAddress: `0x${string}`) => {
 }
 
 
-// npx ts-node call-any-function.ts task-ballot-vote.ts/assignVoter/0xe429F5E3A91b4932aE3022de3E3Ca0F6A911eECa/0x92620b62E21193ed7A0f36915522EFab5049A718
+// npx ts-node call-any-function.ts tasks-ballot.ts.ts/assignVoter/0xe429F5E3A91b4932aE3022de3E3Ca0F6A911eECa/0x92620b62E21193ed7A0f36915522EFab5049A718
 const assignVoter = async (voterAddress: `0x${string}`, contractAddress: `0x${string}`,) => {
 
     //const voterAddress    = inputs[1] as `0x${string}`;
@@ -90,7 +90,7 @@ const assignVoter = async (voterAddress: `0x${string}`, contractAddress: `0x${st
 
 }
 
-// npx ts-node call-any-function.ts task-ballot-vote.ts/castVote/1/0x92620b62E21193ed7A0f36915522EFab5049A718
+// npx ts-node call-any-function.ts tasks-ballot.ts.ts/castVote/1/0x92620b62E21193ed7A0f36915522EFab5049A718
 const castVote = async ( proposalIndex: BigInt, contractAddress: `0x${string}` ) => {
 
   //  const proposalIndex = inputs[0] as BigInt;
@@ -141,7 +141,7 @@ const delegatePower = async ( delegateAddress:  `0x${string}`, contractAddress: 
 
 
 
-// npx ts-node call-any-function.ts task-ballot-vote.ts/queryUsers/0x92620b62E21193ed7A0f36915522EFab5049A718
+// npx ts-node call-any-function.ts tasks-ballot.ts/queryUsers/0x92620b62E21193ed7A0f36915522EFab5049A718
 const queryUsers = async ( contractAddress: `0x${string}` ) => {
 
     // struct Voter {
@@ -154,22 +154,35 @@ const queryUsers = async ( contractAddress: `0x${string}` ) => {
 
     // // This declares a state variable that stores a `Voter` struct for each possible address.
     // mapping(address => Voter) public voters;
+    // must know voter address a priori to query their specific "profile"
+    // use this: https://sepolia.etherscan.io/address/0x92620b62e21193ed7a0f36915522efab5049a718
 
+    let addressArray: string[] = ['0x9E3885eCcDc7E6F61B291B03838313F83799e03A', '0x1c218834059Df5C5BB0421E28A131Aa5Ee3cbc95', '0xe429F5E3A91b4932aE3022de3E3Ca0F6A911eECa'];
+    let i = 0;
 
-    const userProfiles = await publicClient.readContract({
-        address: contractAddress,
-        abi,
-        functionName: "voters", //this is actually reading  state variable, not a function!
-    }) as any[]// any[];
-    
-	const [ weight, voteStatus, delegate, proposalIndex ] = userProfiles
-    console.log("The winning proposal is:", name )
+    //https://www.google.com/search?client=opera&q=asynch+foreach+loop+in+tyspescript
+    // forEach doesn't directly support async/await. achieve similar functionality in TypeScript using the for...of loop
+    for (const singleAddress of addressArray ) {
+        i++;
+        const userProfiles = await publicClient.readContract({
+            address: contractAddress,
+            abi,
+            functionName: "voters", //this is actually reading  state variable, not a function!
+            args: [singleAddress]
+        }) as any[]// any[];
+        
+        const[ weight, voteStatus, delegate, proposalIndex ] = userProfiles
+        console.log("Voter", singleAddress, "profile:")
+        ///console.log({ userProfiles  });
+        console.log("Voting Weight:", weight, ", Already Vote?:",  voteStatus, ", Delegated Address:", delegate, ", Prposal Voted For:",  proposalIndex )
+        console.log(" ")
+    }
 }
 
 
 
 
-// npx ts-node call-any-function.ts task-ballot-vote.ts/getWinner/0x92620b62E21193ed7A0f36915522EFab5049A718
+// npx ts-node call-any-function.ts tasks-ballot.ts.ts/getWinner/0x92620b62E21193ed7A0f36915522EFab5049A718
 const getWinner = async ( contractAddress: `0x${string}` ) => {
 
     const winner = await publicClient.readContract({
