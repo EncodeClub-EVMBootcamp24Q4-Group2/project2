@@ -1,19 +1,21 @@
 # Sample Hardhat Project
 
-## CastVote
-**Proposal details:**
-- Name: lamb chops
-- Current vote count: `1n`
+## CastVote Results
 
-**Voting from address:** `0xA277dae5d2EbF93F589f31E8E6a7f5608895E0B3`  
-**Confirm vote for proposal:** lamb chops  
-**Confirm?** (Y/n)  
-`y`
+### Proposal Details
+- **Name:** lamb chops
+- **Current vote count:** `1n`
 
-**Transaction hash:** `0xb1fbc0423e2a06f032f031038e61eb9ed6cec4e7738e45cbef905e9e19e72751`  
-**Waiting for confirmations...**  
-**Transaction confirmed**
+### Transaction Information
+**Voting address:** `0xA277dae5d2EbF93F589f31E8E6a7f5608895E0B3`  
+**Proposal:** lamb chops  
+**Confirmation:** `y`
 
+### Transaction Details
+**Hash:** `0xb1fbc0423e2a06f032f031038e61eb9ed6cec4e7738e45cbef905e9e19e72751`  
+**Status:** Transaction confirmed
+
+### Transaction Receipt
 ```json
 {
   "blockHash": "0xc4bbc78388626593c853478c781b06a80e64948196a395f52857f51dc947b055",
@@ -31,12 +33,61 @@
   "transactionIndex": 67,
   "type": "eip1559"
 }
+```
 
+## Contract Deployment With Viem
 
+### Deployment Information
+- **Last block number:** 7008002n
+- **Deployer address:** 0xA277dae5d2EbF93F589f31E8E6a7f5608895E0B3
+- **Deployer balance:** 0.078934718291314438 ETH
+
+### Deployment Details
+- **Transaction hash:** 0x2f48b75eba926e961e8048f469cc187e659c10a6103adbd8d6a0e4183e68dc5c
+- **Contract address:** 0x5912b7eb86ee25ea1a60bde6c7f554c6130f7ac0
+
+### Proposals
+1. **Watermelon**
+   ```json
+   {
+     "index": 0,
+     "name": "Watermelon",
+     "proposal": [
+       "0x57617465726d656c6f6e00000000000000000000000000000000000000000000",
+       "0n"
+     ]
+   }
+   ```
+
+2. **Lime**
+   ```json
+   {
+     "index": 1,
+     "name": "Lime",
+     "proposal": [
+       "0x4c696d6500000000000000000000000000000000000000000000000000000000",
+       "0n"
+     ]
+   }
+   ```
+
+3. **Lemon**
+   ```json
+   {
+     "index": 2,
+     "name": "Lemon",
+     "proposal": [
+       "0x4c656d6f6e000000000000000000000000000000000000000000000000000000",
+       "0n"
+     ]
+   }
+   ```
+
+## Usage Instructions
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
 
-Try running some of the following tasks:
+### Available Tasks
 
 ```shell
 npx hardhat help
