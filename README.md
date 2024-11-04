@@ -1,10 +1,8 @@
 # Overview: Encode Club EVM Bootcamp Group 2, Assignment 2
 
-source: https://github.com/codesport/ballot.sol/blob/master/README.md
-
 [`Ballot.sol`](contracts/Ballot.sol) was deployed with Viem using the [`deploy-ballot-viem.ts`](scripts/deploy-ballot-viem.ts) script.  
 
-The contract creation (i.e., deploy) transaction is located at [0x39b6325c21b2a65d06f94063284450000ea8856c063951ed27752f230788d121](https://sepolia.etherscan.io/tx/0x39b6325c21b2a65d06f94063284450000ea8856c063951ed27752f230788d121) on the Sepolia testnet.
+The contract's address is [0x92620b62e21193ed7a0f36915522efab5049a718](https://sepolia.etherscan.io/address/0x92620b62e21193ed7a0f36915522efab5049a718).  The creation (i.e., deploy) transaction is located at [0x39b6325c21b2a65d06f94063284450000ea8856c063951ed27752f230788d121](https://sepolia.etherscan.io/tx/0x39b6325c21b2a65d06f94063284450000ea8856c063951ed27752f230788d121) on the Sepolia testnet.
 
 `call-any-Function.ts` and `task-ballot.ts` were used from the CLI to execute read and write functions within `Ballot.sol`. 
 
@@ -46,7 +44,7 @@ The contract creation (i.e., deploy) transaction is located at [0x39b6325c21b2a6
 
 In this scenario user **[DAaJDn] @codesport** performed actions as the Ballot.sol "chairperson".  The following was run from the CLI to give each team member voting rights:
 
-`$ npx ts-node call-any-function.ts task-ballot.ts/assignVoter/<userWalletAddress>/<ballotContractAddress>`
+`$ npx ts-node call-any-function.ts tasks-ballot.ts/assignVoter/<userWalletAddress>/<ballotContractAddress>`
 
 where:
 `ballotContractAddress` = [0x92620b62E21193ed7A0f36915522EFab5049A718](https://sepolia.etherscan.io/address/0x92620b62E21193ed7A0f36915522EFab5049A718)
@@ -85,16 +83,95 @@ Below are screenshots and transaction hashes of these actions:
 
 
 # Casting Votes
+Three team members casted votes. There wallet address and voting transcactions are as follows:
+1 ![0xe429f5e3a91b4932ae3022de3e3ca0f6a911eeca](https://sepolia.etherscan.io/tx/0x1647129dc766ea38aa06f56c20efbcda97ba7b54758917f6a6bdf9f201fc4fcb)
+1 ![0x1c218834059df5c5bb0421e28a131aa5ee3cbc95](https://sepolia.etherscan.io/tx/0xc5aa37f1d7a1cebd74640b627548774988c13ff84dfd14b00659a799e2f38ee0)
+1 ![0x9e3885eccdc7e6f61b291b03838313f83799e03a](https://sepolia.etherscan.io/tx/0x95150edaaf413a3da0646af457c2d02e69af3446bd185c671403ace830b2de58)
 
+```
+// npx ts-node call-any-function.ts tasks-ballot.ts.ts/castVote/1/0x92620b62E21193ed7A0f36915522EFab5049A718
+const castVote = async ( proposalIndex: BigInt, contractAddress: `0x${string}` ) => {
+
+  //  const proposalIndex = inputs[0] as BigInt;
+
+    if (!contractAddress) 
+        throw new Error("Contract address not provided");
+
+    if (!/^0x[a-fA-F0-9]{40}$/.test(contractAddress))
+        throw new Error("Invalid contract address");
+
+    if (isNaN(Number(proposalIndex))) 
+        throw new Error("Invalid proposal index");
+
+
+    const proposal = ( await publicClient.readContract({
+        address: contractAddress,
+        abi,
+        functionName: "proposals",
+        args: [proposalIndex],
+    })) as any[];
+
+    const name = hexToString(proposal[0], { size: 32 });
+    console.log("Voting on proposal:", name);
+
+
+    const voteHash = await walletClient.writeContract({
+        abi: abi,
+        address: contractAddress!, // OR USE: as `0x${string}`
+        functionName: "vote",
+        args:[proposalIndex]  // BigInt(proposalIndex) 
+    });
+
+    
+ 	console.log("Transaction hash:", voteHash);
+	console.log("Waiting for confirmations...");
+	let receipt = await publicClient.waitForTransactionReceipt({ hash: voteHash });
+	console.log(receipt.from, "has successfully Voted for ", name );
+    
+
+}
+```
 # Delegating Votes
+TBD
 
 # Querying Results
+```
+// npx ts-node call-any-function.ts tasks-ballot.ts/queryUsers/0x92620b62E21193ed7A0f36915522EFab5049A718
+
+const queryUsers = async ( contractAddress: `0x${string}` ) => {
+
+    // struct Voter {
+    //     uint weight; // weight is accumulated by delegation
+    //     bool voted;  // if true, that person already voted
+    //     address delegate; // person delegated to
+    //     uint vote;   // index of the voted proposal
+    // }
 
 
-# Function Calls
+    // // This declares a state variable that stores a `Voter` struct for each possible address.
+    // mapping(address => Voter) public voters;
+    // must know voter address a priori to query their specific "profile"
+    // use this: https://sepolia.etherscan.io/address/0x92620b62e21193ed7a0f36915522efab5049a718
 
-## xyz  Function Call
+    let addressArray: string[] = ['0x9E3885eCcDc7E6F61B291B03838313F83799e03A', '0x1c218834059Df5C5BB0421E28A131Aa5Ee3cbc95', '0xe429F5E3A91b4932aE3022de3E3Ca0F6A911eECa'];
+    let i = 0;
 
-## abc Function Call
-
-## 123 Function Call
+    //https://www.google.com/search?client=opera&q=asynch+foreach+loop+in+tyspescript
+    // forEach doesn't directly support async/await. achieve similar functionality in TypeScript using the for...of loop
+    for (const singleAddress of addressArray ) {
+        i++;
+        const userProfiles = await publicClient.readContract({
+            address: contractAddress,
+            abi,
+            functionName: "voters", //this is actually reading  state variable, not a function!
+            args: [singleAddress]
+        }) as any[]// any[];
+        
+        const[ weight, voteStatus, delegate, proposalIndex ] = userProfiles
+        console.log("Voter", singleAddress, "profile:")
+        ///console.log({ userProfiles  });
+        console.log("Voting Weight:", weight, ", Already Vote?:",  voteStatus, ", Delegated Address:", delegate, ", Prposal Voted For:",  proposalIndex )
+        console.log(" ")
+    }
+}
+```
