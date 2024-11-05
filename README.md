@@ -25,14 +25,14 @@ The contract creation (i.e., deploy) transaction is located at [0x39b6325c21b2a6
 
 "Pizza", "Salad", and "Lamb Chops" were chosen as proposals.  The screenshot below summarizes the contract deploy output:
 
-![Ballot.sol Deployment](https://media.discordapp.net/attachments/1299375022737063979/1302057421858013224/Screenshot_2024-11-01_195103.png?ex=6728b538&is=672763b8&hm=2c850f539af675eb5356f24870a2193ed5219254cc4b0ff2bc974e7eba4dcb95&=&format=webp&quality=lossless&width=547&height=373)
+![Ballot.sol Deployment](img/Screenshot_2024-11-01_195103.png))
 
 
 
 
 # Give Voting Rights
 
-Voting writes were given to the following members of my group.
+Voting writes were given to the following participants:
 
 * ExqPpl - Github: @pondskai 
 * tJnNuQ - Github: @maomaosaosao 
@@ -53,29 +53,25 @@ Below are screenshots and transaction hashes of these actions:
 
 + [ExqPpl] @pondskai
    - [0x31c17ede44b91518d6501faeeca94281f59897b645d234b15c95e013e144e09](https://sepolia.etherscan.io/tx/0x31c17ede44b91518d6501faeeca94281f59897b645d234b15c95e013e144e094)
-   ![voting privileges 1](https://media.discordapp.net/attachments/1299375022737063979/1302519761757933651/kai-assign-vote.png?ex=6728698e&is=6727180e&hm=ee2c966fb1c9b3d31f9c521b900363ab9fe1d79feeedc07a0dfe4c2c0f2d3cef&=&format=webp&quality=lossless&width=961&height=373)
-
-+ [tJnNuQ] @maomaosaosao 
+   ![voting privileges 1](/img/kai-assign-vote.png)
 
 + [R9dhTD] @brianblank 
 
   - https://sepolia.etherscan.io/tx/0xed20f6da03fae521e82295062b116597f3b99e6d04a272d8c528c1303c3edf8f
-  ![voting privileges 5](https://media.discordapp.net/attachments/1299375022737063979/1302523703313305630/brian-assign-vote.png?ex=67286d3a&is=67271bba&hm=0d2e8bb943cc53e4f872c841525a0f67a19aa6de31f0ef18c91e826f2ab6d7ad&=&format=webp&quality=lossless&width=966&height=373)
+  ![voting privileges 5](/img/brian-assign-vote.png)
   
-+ [DAaJDn] @codesport 
-
 + [lofjwH] @fang10000
 
    - [0x06ea427dac4897137e235e6b190e279f1544dead57a233bba6292c45d97ead4c](https://sepolia.etherscan.io/tx/0x06ea427dac4897137e235e6b190e279f1544dead57a233bba6292c45d97ead4c) 
-   ![voting privileges 2](https://cdn.discordapp.com/attachments/1299375022737063979/1302518198066745364/zicoffee-assign-vote.png?ex=6728681a&is=6727169a&hm=2b33bee0170f69562af8f7a2fab50e2768b390eb0f0d6a5715ff3af906ecc8ff&)
+   ![voting privileges 2](/img/zicoffee-assign-vote.png)
 
 + [Mn8EN0] @ethalorian
     - [0x31c17ede44b91518d6501faeeca94281f59897b645d234b15c95e013e144e094](https://sepolia.etherscan.io/tx/0x31c17ede44b91518d6501faeeca94281f59897b645d234b15c95e013e144e094)  
-   ![voting privileges 4](https://media.discordapp.net/attachments/1299375022737063979/1302522657862058015/ethlorian-assign-vote.png?ex=67286c41&is=67271ac1&hm=1b202ae9cc6ebd5079c034d3057c216b1a47162fb11433385093513b8729f22c&=&format=webp&quality=lossless&width=989&height=373)
+   ![voting privileges 4](/img/ethlorian-assign-vote.png)
 
 + [HPJ2do] @DiegoB1911 
    - https://sepolia.etherscan.io/tx/0xc801ac3f3f27d7138559cf09d979816a992753a55150af575ef171cab88c6252
-   ![voting privileges 3](https://media.discordapp.net/attachments/1299375022737063979/1302521488384983103/diego-assign-vote.png?ex=67286b2a&is=672719aa&hm=8786e537f9e38e6095d543897562d3c8ec373065f2edf5b2a5c2a97ac5bf5b2d&=&format=webp&quality=lossless&width=954&height=373)
+   ![voting privileges 3](/img/diego-assign-vote.png)
 
 
 
@@ -83,10 +79,10 @@ Below are screenshots and transaction hashes of these actions:
 
 
 # Casting Votes
-Three team members casted votes. There wallet address and voting transcactions are as follows:
-1 ![0xe429f5e3a91b4932ae3022de3e3ca0f6a911eeca](https://sepolia.etherscan.io/tx/0x1647129dc766ea38aa06f56c20efbcda97ba7b54758917f6a6bdf9f201fc4fcb)
-1 ![0x1c218834059df5c5bb0421e28a131aa5ee3cbc95](https://sepolia.etherscan.io/tx/0xc5aa37f1d7a1cebd74640b627548774988c13ff84dfd14b00659a799e2f38ee0)
-1 ![0x9e3885eccdc7e6f61b291b03838313f83799e03a](https://sepolia.etherscan.io/tx/0x95150edaaf413a3da0646af457c2d02e69af3446bd185c671403ace830b2de58)
+Three team members casted votes. Their wallet address and voting transactions are as follows:
+1 [0xe429f5e3a91b4932ae3022de3e3ca0f6a911eeca](https://sepolia.etherscan.io/tx/0x1647129dc766ea38aa06f56c20efbcda97ba7b54758917f6a6bdf9f201fc4fcb)
+1 [0x1c218834059df5c5bb0421e28a131aa5ee3cbc95](https://sepolia.etherscan.io/tx/0xc5aa37f1d7a1cebd74640b627548774988c13ff84dfd14b00659a799e2f38ee0)
+1 [0x9e3885eccdc7e6f61b291b03838313f83799e03a](https://sepolia.etherscan.io/tx/0x95150edaaf413a3da0646af457c2d02e69af3446bd185c671403ace830b2de58)
 
 ```
 // npx ts-node call-any-function.ts tasks-ballot.ts.ts/castVote/1/0x92620b62E21193ed7A0f36915522EFab5049A718
