@@ -1,6 +1,5 @@
 # Overview: Encode Club EVM Bootcamp Group 2, Assignment 2
-
-[`Ballot.sol`](contracts/Ballot.sol) was deployed with Viem using the [`deploy-ballot-viem.ts`](scripts/deploy-ballot-viem.ts) script.  
+Using his disassociated developer wallet, [*DAaJDn - Github: @codesport*](https://github.com/codesport)  deployed [`Ballot.sol`](contracts/Ballot.sol) with Viem using the [`deploy-ballot-viem.ts`](scripts/deploy-ballot-viem.ts) script. 
 
 The contract's address is [0x92620b62e21193ed7a0f36915522efab5049a718](https://sepolia.etherscan.io/address/0x92620b62e21193ed7a0f36915522efab5049a718).  The creation (i.e., deploy) transaction is located at [0x39b6325c21b2a65d06f94063284450000ea8856c063951ed27752f230788d121](https://sepolia.etherscan.io/tx/0x39b6325c21b2a65d06f94063284450000ea8856c063951ed27752f230788d121) on the Sepolia testnet.
 
@@ -14,15 +13,6 @@ Usage is as follows:
 
 `$ npx ts-node call-any-Function.ts /<script-name>/<function-name>/<argument1>/<argument2>`
 
-## Team Members
-
-* ExqPpl - Github: @pondskai 
-* tJnNuQ - Github: @maomaosaosao 
-* R9dhTD - Github: @brianblankk
-* DAaJDn - Github: @codesport
-* lofjwH - Github: @fang10000
-* Mn8EN0 - Github: @ethalorian
-* HPJ2do - Github: @DiegoB1911 
 
 ## Deliverables
 
@@ -41,6 +31,16 @@ The contract creation (i.e., deploy) transaction is located at [0x39b6325c21b2a6
 
 
 # Give Voting Rights
+
+Voting writes were given to the following members of my group.
+
+* ExqPpl - Github: @pondskai 
+* tJnNuQ - Github: @maomaosaosao 
+* R9dhTD - Github: @brianblank
+* lofjwH - Github: @fang10000
+* Mn8EN0 - Github: @ethalorian
+* HPJ2do - Github: @DiegoB1911 
+
 
 In this scenario user **[DAaJDn] @codesport** performed actions as the Ballot.sol "chairperson".  The following was run from the CLI to give each team member voting rights:
 

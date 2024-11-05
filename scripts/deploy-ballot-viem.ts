@@ -38,7 +38,7 @@ const deployerPrivateKey = process.env.PRIVATE_KEY || "";
 async function main() {
 
 	// 1. custom code for Ballot.sol
-  	const proposals = process.argv.slice(2);
+  	const proposals = process.argv.slice(2); // CLI args are auto-converted to 0-indexed array.  First 2 indices are metadata
 	if (!proposals || proposals.length < 1) {
     	throw new Error("Proposals not provided");
 	}
@@ -80,6 +80,8 @@ async function main() {
 	const hash = await deployer.deployContract({
 		abi,
 		bytecode: bytecode as `0x${string}`, // hexadecimal string, which is the standard format for Ethereum bytecode.
+
+		//convers "pizza", "salad", "lamb chops" to: ["0x70697a7a61000000000000000000000000000000000000000000000000000000", "0x73616c6164000000000000000000000000000000000000000000000000000000", "0x6c616d622063686f707300000000000000000000000000000000000000000000" ]
 		args: [proposals.map((prop) => toHex(prop, { size: 32 }))],
 	});
 
