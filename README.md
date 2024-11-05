@@ -18,3 +18,19 @@ This project represents Homework #2 for Group #2 for the Encode Club EVM Bootcam
 + [HPJ2do](./users/HPJ2do/README.md) - Github: @DiegoB1911 - Discord: @DiegoB
 
 
+
+## Giving voting Right
+
+![alt text](./img/image-1.png)
+
+
+## Voting
+![alt text](./img/image-2.png)
+
+
+## Getting winner
+
+![alt text](./img/image-3.png)
+
+## Delegating vote
+![alt text](./img/image-4.png)
